@@ -1,0 +1,24 @@
+#!/usr/bin/sh
+
+sxhkd &
+compton -b --vsync opengl --blur-background --backend glx &
+xfce4-panel -d &
+xinput set-prop 14 290 1 &
+xinput set-prop 14 298 1 &
+feh --bg-scale ~/Pictures/wallpaper.jpg &
+
+bspc monitor -d I II III IV
+
+bspc config border_width         2
+bspc config window_gap          12
+
+bspc config split_ratio          0.5
+bspc config borderless_monocle   true bspc config gapless_monocle      true 
+bspc config pointer_follows_focus	true
+bspc config focus_follows_pointer	true
+bspc config center_pseudo_tiled		true
+
+bspc rule -a URxvt state=pseudo_tiled
+bspc rule -a mplayer2 state=floating
+bspc rule -a Kupfer.py focus=on
+bspc rule -a Screenkey manage=off
