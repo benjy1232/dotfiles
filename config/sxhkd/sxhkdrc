@@ -83,8 +83,8 @@ super + {o,i}
 	bspc wm -h on
 
 # focus or send to the given desktop
-super + {_,shift + }{1-9,0}
-	bspc {desktop -f,node -d} '^{1-9,10}'
+super + {_,shift + }{1-4}
+	bspc {desktop -f,node -d} '^{1-4}'
 
 #
 # preselect
@@ -129,6 +129,12 @@ XF86AudioLowerVolume
 	amixer sset Master 2%-
 XF86AudioMute
 	amixer sset Master toggle
-
+# Take a screenshot
 super + shift + p
 	import -windor root image1.png
+# Firefox
+super + w
+	firefox
+# Google Play Music
+super + shift + m
+	flatpak run com.googleplaymusicdesktopplayer.GPMDP
