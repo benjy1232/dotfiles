@@ -3,8 +3,8 @@ sxhkd &
 compton -b --vsync opengl --blur-background --backend glx &
 polybar example &
 xinput set-prop 14 290 1 &
-xinput set-prop 14 297 1 &
-feh --bg-scale ~/Pictures/wallpaper.jpg &
+xinput set-prop 14 298 1 &
+feh --bg-scale ~/Pictures/wallpaper.png &
 blueman-applet &
 bspc monitor -d I II III IV
 
@@ -20,5 +20,6 @@ bspc config center_pseudo_tiled		true
 bspc config automatic_scheme		spiral
 
 bspc rule -a "Google Play Music Desktop Player" state=pseudo_tiled desktop="^4" 
-bspc rule -a "URxvt" desktop="^1"
+bspc rule -a "kitty" desktop="^1"
 bspc rule -a "Firefox" desktop="^2" 
+bspc rule -a "Chromium-browser" desktop="^2"
