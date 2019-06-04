@@ -131,8 +131,8 @@ XF86AudioMute
 	amixer sset Master toggle
 XF86AudioLowerVolume + shift
 	amixer sset Master 5%-
-XF86AudioRaiseVolume
-	amixer sset Master 2%+ 
+XF86AudioRaiseVolume + shift
+	amixer sset Master 5%+ 
 # Take a screenshot
 super + shift + p
 	import -windor root image1.png
