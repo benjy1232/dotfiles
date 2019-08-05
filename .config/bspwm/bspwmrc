@@ -4,15 +4,13 @@ compton -b --vsync opengl --blur-background --backend glx &
 polybar example &
 xinput set-prop 14 290 1 &
 xinput set-prop 14 298 1 &
-feh --bg-fill ~/Pictures/wallpaper.png &
 blueman-applet &
-amixer sset Master mute &
-bspc monitor -d I II III IV
+bspc monitor LVDS-1 -d Terminal Firefox Office Misc
 
 bspc config border_width         1
-bspc config window_gap           0
-bspc config split_ratio          0.65
-bspc config borderless_monocle   true
+bspc config window_gap           15
+bspc config split_ratio          0.5
+bspc config borderless_monocle   false
 bspc config gapless_monocle      true 
 
 bspc config pointer_follows_focus	true
@@ -20,7 +18,6 @@ bspc config focus_follows_pointer	true
 bspc config center_pseudo_tiled		true
 bspc config automatic_scheme		spiral
 
-bspc rule -a "Google Play Music Desktop Player" state=pseudo_tiled desktop="^4" 
 bspc rule -a "URxvt" desktop="^1"
 bspc rule -a "Firefox" desktop="^2" 
-bspc rule -a "Chromium-browser" desktop="^2"
+bspc rule -a "libreoffice-startcenter" desktop="^3"
