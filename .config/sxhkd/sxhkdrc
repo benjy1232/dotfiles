@@ -133,12 +133,11 @@ XF86AudioLowerVolume + shift
 	amixer sset Master 5%-
 XF86AudioRaiseVolume + shift
 	amixer sset Master 5%+ 
-# Take a screenshot
-super + shift + p
-	import -windor root image1.png
+# Screen Brightness controls
+XF86MonBrightnessUp
+    xbacklight -inc 5
+XF86MonBrightnessDown
+    xbacklight -dec 5
 # Firefox
 super + w
-	firefox
-# Google Play Music
-super + shift + m
-	flatpak run com.googleplaymusicdesktopplayer.GPMDP
+	google-chrome-stable
