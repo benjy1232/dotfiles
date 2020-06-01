@@ -1,11 +1,12 @@
 #!/usr/bin/sh
 sxhkd &
 compton -b --vsync opengl --blur-background --backend glx &
-polybar example &
-xinput set-prop 14 290 1 &
-xinput set-prop 14 298 1 &
+$HOME/.config/polybar/launch.sh &
+xinput set-prop 15 306 1 &
+xinput set-prop 15 314 1 &
 blueman-applet &
-bspc monitor LVDS-1 -d Terminal Firefox Office Misc
+feh --bg-fill $HOME/Pictures/PeriodicTable.png &
+bspc monitor LVDS-1 -d CLI WWW Etc
 
 bspc config border_width         1
 bspc config window_gap           15
@@ -19,5 +20,5 @@ bspc config center_pseudo_tiled		true
 bspc config automatic_scheme		spiral
 
 bspc rule -a "URxvt" desktop="^1"
-bspc rule -a "Firefox" desktop="^2" 
-bspc rule -a "libreoffice-startcenter" desktop="^3"
+bspc rule -a "Google-chrome" desktop="^2" 
+bspc rule -a "clonehero" desktop="^3"
