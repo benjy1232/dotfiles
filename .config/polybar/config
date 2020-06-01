@@ -1,0 +1,76 @@
+; I'm gonna start this off by saying I have no clue what to do
+
+[colors]
+background = #1c2023
+foreground = #c7ccd1
+red = #c7ae95
+green = #95c7ae
+blue = #95aec7
+
+[bar/main]
+width = 99%
+offset-x = .5%
+offset-y = .4%
+height = 18
+radius = 5.0
+background = ${colors.background}
+foreground = ${colors.foreground}
+bottom = false
+fixed-center = true
+
+padding = 3
+tray-padding = 3
+line-size = 2
+font-0 = "Ubuntu:size=10:weight=regular;1"
+module-margin-left = 1
+module-margin-right = 2
+
+modules-left = bspwm
+modules-center = date
+modules-right = pulseaudio battery
+
+tray-position = right
+tray-maxsize = 16
+tray-background = ${colors.background}
+scroll-up = bspwm-desknext
+scroll-down = bspwm-deskprev
+
+[module/battery]
+type = internal/battery
+full-at = 99
+
+battery = BAT0
+adapter = AC0
+poll-interval = 3
+
+[module/bspwm]
+type = internal/bspwm
+enable-click = true
+fuzzy-match = true
+
+label-dimmed-foreground = ${colors.foreground}
+label-dimmed-background = ${colors.background}
+label-dimmed-underline = ${colors.background}
+
+label-focused-background = #777777
+label-focused-foreground = #e9ffd5
+label-focused-underline = #66dcff
+
+label-separator = |
+label-separator-padding = 2
+label-separator-foreground = ${colors.foreground}
+
+[module/date]
+type = internal/date
+interval = 1.0
+date = %m/%d/%y
+time = %I:%M
+label = %date% | %time%
+
+[module/pulseaudio]
+type = internal/pulseaudio
+sink = alsa_output.pci-0000_00_1b.0.analog-stereo
+use-ui-max = true
+interval = 2
+label-muted = muted
+label-muted-foreground = ${colors.foreground}
