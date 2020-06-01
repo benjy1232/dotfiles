@@ -1,3 +1,3 @@
 # dotfiles
 
-Dotfiles for my Fedora BSPWM kinda-rice
+Finally changed by BSPWM setup and am now on debian
