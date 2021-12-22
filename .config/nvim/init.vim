@@ -1,6 +1,7 @@
 execute pathogen#infect('bundle/{}', '~/.config/nvim/bundle/{}')
+set termguicolors
 syntax on
 filetype plugin indent on
 set number relativenumber
-colorscheme nazca
-set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
+let ayucolor="dark"
+colorscheme ayu
