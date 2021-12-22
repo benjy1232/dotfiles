@@ -1,3 +1,6 @@
 [submodule ".config/nvim/bundle/vim-colorschemes"]
 	path = .config/nvim/bundle/vim-colorschemes
 	url = https://github.com/flazz/vim-colorschemes
+[submodule ".config/nvim/bundle/omnisharp-vim"]
+	path = .config/nvim/bundle/omnisharp-vim
+	url = git://github.com/OmniSharp/omnisharp-vim
