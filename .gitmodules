@@ -4,3 +4,6 @@
 [submodule ".config/nvim/bundle/omnisharp-vim"]
 	path = .config/nvim/bundle/omnisharp-vim
 	url = git://github.com/OmniSharp/omnisharp-vim
+[submodule ".config/nvim/bundle/nerdtree"]
+	path = .config/nvim/bundle/nerdtree
+	url = https://github.com/preservim/nerdtree.git
