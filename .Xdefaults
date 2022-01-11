@@ -34,9 +34,10 @@
 ! white
 *.color7:       #c7ccd1
 *.color15:      #f3f4f5
+
 URxvt.scrollBar:	false
 URxvt.intensityStyles:	true
-URxvt.font:		xft:monospace:size=9
+URxvt.font:		xft:IBM Plex Mono:size=9
 URxvt.background:	[95]#1c2023
 URxvt.depth:		32
 
