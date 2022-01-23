@@ -74,7 +74,7 @@ plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
 
-export EDITOR='nvim'
+export EDITOR='vim'
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
