@@ -7,3 +7,6 @@
 [submodule ".config/nvim/bundle/nerdtree"]
 	path = .config/nvim/bundle/nerdtree
 	url = https://github.com/preservim/nerdtree.git
+[submodule ".vim/bundle/nerdtree"]
+	path = .vim/bundle/nerdtree
+	url = https://github.com/preservim/nerdtree.git

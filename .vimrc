@@ -1,4 +1,4 @@
-execute pathogen#infect('bundle/{}', '~/.config/nvim/bundle/{}')
+execute pathogen#infect()
 set termguicolors
 syntax on
 filetype plugin indent on
