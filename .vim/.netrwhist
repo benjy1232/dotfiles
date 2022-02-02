@@ -1,0 +1,7 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =5
+let g:netrw_dirhist_5='/home/bserrano/Documents/Spring 2022/ECE238/In Class Programs/Homework 2'
+let g:netrw_dirhist_4='/home/bserrano/Documents/Spring 2022/ECE238/In Class Programs'
+let g:netrw_dirhist_3='/home/bserrano/Documents/Spring 2022/ECE238'
+let g:netrw_dirhist_2='/home/bserrano/Documents/Spring 2022'
+let g:netrw_dirhist_1='/home/bserrano/Documents'
