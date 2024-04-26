@@ -1,0 +1,8 @@
+# Emacs Stuff that we don't want
+url/
+eln-cache/
+elpa/
+auto-save-list/
+*~
+
+lazy-lock.json
