@@ -1,7 +1,7 @@
 return {
 	{
 		'folke/tokyonight.nvim',
-		lazy = false,
+		lazy = true,
 		priority = 1000,
 		config = {
 			style = 'night',
@@ -16,5 +16,14 @@ return {
 		'nvim-lualine/lualine.nvim',
 		dependecies = { 'nvim-tree/nvim-web-devicons' },
 		opts = {}
+	},
+	{
+		'nvim-treesitter/nvim-treesitter',
+		build = ':TSUpdate'
+	},
+	{
+		'rose-pine/neovim',
+		name = 'rose-pine',
+		lazy = false
 	}
 }
