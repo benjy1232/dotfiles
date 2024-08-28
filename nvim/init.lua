@@ -1,5 +1,5 @@
+require('config')
 vim.o.number = true
 vim.o.relativenumber = true
-require('lazy-bootstrap')
-require('lazy').setup('plugins')
-vim.cmd [[colo rose-pine]]
+--vim.cmd('colo rose-pine')
+vim.cmd('colo catppuccin')

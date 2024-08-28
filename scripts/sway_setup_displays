@@ -1,0 +1,113 @@
+#!/usr/bin/env python3
+import daemon
+import json
+import socket
+from os import environ
+from sys import byteorder
+
+MAGIC_STRING = 'i3-ipc'.encode()
+
+SWAY_CMD_CMD = 0
+SWAY_CMD_SUBSCRIBE = 2
+SWAY_CMD_GOUTPUT = 3
+
+SWAY_EVENT_OUTPUT = 0x80000001
+
+
+def send_swaymsg(sock: socket.socket, payload_type: int,
+                 payload: str | None = None) -> int:
+    payload_len = 0
+    if isinstance(payload, str):
+        payload_len = len(payload)
+        payload = payload.encode()
+
+    msg = (MAGIC_STRING + payload_len.to_bytes(4, byteorder) +
+           payload_type.to_bytes(4, byteorder))
+
+    if payload_len:
+        msg += payload
+
+    return sock.send(msg)
+
+
+def recv_and_parse_swaymsg(sock: socket.socket):
+    start_idx = 0
+    payload_len = 0
+    end_idx = len(MAGIC_STRING)
+    recv_msg = sock.recv(4096)
+    response = []
+    while end_idx + payload_len < len(recv_msg):
+        d = {}
+
+        assert recv_msg[start_idx:end_idx] == MAGIC_STRING, \
+            'Unexpected Beginning'
+
+        start_idx = end_idx
+        end_idx += 4
+        payload_len = int.from_bytes(recv_msg[start_idx:end_idx], byteorder)
+        d['payload_len'] = payload_len
+
+        start_idx = end_idx
+        end_idx += 4
+        msg_type = int.from_bytes(recv_msg[start_idx:end_idx], byteorder)
+        d['msg_type'] = msg_type
+
+        while len(recv_msg) - end_idx < payload_len:
+            recv_msg += sock.recv(4096)
+
+        d['payload'] = json.loads(recv_msg[end_idx:end_idx + payload_len])
+        start_idx = end_idx + payload_len
+        end_idx = start_idx + len(MAGIC_STRING)
+
+        response.append(d)
+
+    return response
+
+
+def get_display_count(sock: socket.socket):
+    send_swaymsg(sock, SWAY_CMD_GOUTPUT)
+    return len(recv_and_parse_swaymsg(sock)[0]['payload'])
+
+
+def send_cmd(sock: socket.socket, cmd: str):
+    send_swaymsg(sock, SWAY_CMD_CMD, cmd)
+    return recv_and_parse_swaymsg(sock)[0]
+
+
+def check_and_configure_displays(sock: socket.socket):
+    display_count = get_display_count(sock)
+    print(display_count)
+    if display_count > 1:
+        print(send_cmd(sock, 'output eDP-1 disable'))
+    else:
+        print(send_cmd(sock, 'output eDP-1 enable'))
+
+
+def subscribe_to_event(s: socket.socket, events: str | list[str]):
+    if not isinstance(events, list):
+        events = [events]
+    send_swaymsg(s, SWAY_CMD_SUBSCRIBE, json.dumps(events))
+    return recv_and_parse_swaymsg(s)
+
+
+def main():
+    sway_addr = environ.get('SWAYSOCK')
+    if not sway_addr:
+        return
+
+    with socket.socket(socket.AF_UNIX, socket.SOCK_STREAM) as s:
+        s.connect(sway_addr.encode())
+        check_and_configure_displays(s)
+        ret = subscribe_to_event(s, 'output')
+        if not ret[0]['payload']['success']:
+            return
+        while True:
+            response = recv_and_parse_swaymsg(s)
+            for res in response:
+                if res['msg_type'] != SWAY_EVENT_OUTPUT:
+                    return
+            check_and_configure_displays(s)
+
+
+with daemon.DaemonContext():
+    main()

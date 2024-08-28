@@ -1,10 +1,15 @@
 # My Dotfiles
-Updated my dotfiles to use both Emacs and Neovim as they've both grown on me.
+Dotfiles for my sway rice. Colorscheme is provided by [Catppuccin](https://github.com/catppuccin/catppuccin). Currently using Catppuccin Mocha wherever possible.
 
-Font in use currently: [BlexMono Nerd Font Text](https://www.nerdfonts.com/font-downloads) - [Download](https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/IBMPlexMono.zip)
-Current Terminal: Foot
+Most notable thing in here is most likely [scripts/sway_setup_displays](scripts/sway_setup_displays). Takes advantage of the sway-ipc to determine if the laptop is currently connected to an external monitor, and if it is, disable the internal display.
+
 Editors:
-1. Emacs
-    - Using Emacs from Fedora with customizations for tree sitter and eglot soon
 1. Neovim
     - Using Neovim from Fedora with customzations for lspconfig, and telescope
+
+- WM: sway
+- Status Bar: waybar
+- Colorscheme: Catppuccin
+- Terminal: Foot
+- Font: CaskaydiaCove Nerd Font Mono and BlexMono Nerd Font Mono
+
