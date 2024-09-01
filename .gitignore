@@ -4,5 +4,6 @@ eln-cache/
 elpa/
 auto-save-list/
 *~
+tmux/plugins/
 
 lazy-lock.json
