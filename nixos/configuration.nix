@@ -8,6 +8,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ./gnome.nix
     ];
 
   # Use the systemd-boot EFI boot loader.
@@ -63,9 +64,11 @@
     extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
     packages = with pkgs; [
       bat
+      discord
       delta
       firefox
       gh
+      neovim
       tmux
       tree
     ];
@@ -74,10 +77,8 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    neovim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    gnome-console
+    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     wget
-    discord
   ];
 
   programs = {
@@ -97,28 +98,6 @@
 
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
-  services.xserver = {
-    enable = true;
-    displayManager.gdm.enable = true;
-    desktopManager.gnome.enable = true;
-  };
-
-  environment.gnome.excludePackages = (with pkgs; [
-    gedit
-    gnome-photos
-  ]) ++ (with pkgs.gnome; [
-    cheese
-    gnome-terminal
-    epiphany
-    geary
-    evince
-    gnome-characters
-    totem
-    tali
-    iagno
-    hitori
-    atomix
-  ]);
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
