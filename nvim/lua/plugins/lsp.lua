@@ -113,7 +113,8 @@ return {
 
       vim.keymap.set("n", "<leader>tt", function()
         require("trouble").toggle('diagnostics')
-      end, { desc = '[T]oggle [T]rouble Diagnostics' })
+      end,
+      { desc = '[T]oggle [T]rouble Diagnostics' })
 
       vim.keymap.set("n", "[t", function()
         require("trouble").prev({
@@ -121,7 +122,8 @@ return {
           focus = false,
           jump = true
         });
-      end, { desc = 'Previous Issue' })
+      end,
+      { desc = 'Previous Issue' })
 
       vim.keymap.set("n", "]t", function()
         require("trouble").next({
@@ -129,7 +131,8 @@ return {
           focus = false,
           jump = true
         });
-      end)
+      end,
+      { desc = 'Next Issue' })
     end
   }
 }

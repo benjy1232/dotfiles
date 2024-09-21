@@ -1,4 +1,5 @@
 require('config')
-vim.o.number = true
-vim.o.relativenumber = true
-vim.cmd('colo catppuccin')
+vim.opt.number = true
+vim.opt.relativenumber = true
+vim.opt.cc = '80'
+vim.cmd('colo rose-pine')
