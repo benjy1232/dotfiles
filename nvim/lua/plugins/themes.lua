@@ -2,13 +2,10 @@ return {
   {
     'rose-pine/neovim',
     name = 'rose-pine',
+    tag = 'v3.0.1',
     opts = {
       variant = 'auto',
       dark_variant = 'main',
-      dim_inactive_windows = false,
-      styles = {
-        transparency = false
-      }
     },
     lazy = true
   },
@@ -22,9 +19,9 @@ return {
         light = 'latte',
         dark = 'mocha'
       },
-      transparent_background = false,
       term_colors = true,
     },
+    lazy = true
   },
   {
     'nvim-lualine/lualine.nvim',
@@ -39,16 +36,26 @@ return {
   {
     'folke/tokyonight.nvim',
     opts = {
-      style = "night"
+      style = "night",
     },
     lazy = true
   },
   {
-    'folke/which-key.nvim'
+    'rebelot/kanagawa.nvim',
+    lazy = true,
+    opts = {
+      theme = 'wave',
+      background = {
+        dark = 'wave',
+        light = 'lotus'
+      },
+    }
   },
   {
-    'rose-pine/neovim',
-    name = 'rose-pine',
-    tag = 'v3.0.1'
+    'navarasu/onedark.nvim',
+    lazy = true,
+    opts = {
+      style = 'darker'
+    }
   }
 }

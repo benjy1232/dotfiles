@@ -70,7 +70,7 @@ return {
         settings = {
           Lua = {}
         },
-        capabilities = capabilities
+        -- capabilities = capabilities
       }
 
       -- Clangd setup
@@ -108,31 +108,35 @@ return {
     dependencies = {
       'nvim-tree/nvim-web-devicons'
     },
-    config = function()
-      require("trouble").setup({})
-
-      vim.keymap.set("n", "<leader>tt", function()
-        require("trouble").toggle('diagnostics')
-      end,
-      { desc = '[T]oggle [T]rouble Diagnostics' })
-
-      vim.keymap.set("n", "[t", function()
-        require("trouble").prev({
-          mode = 'diagnostics',
-          focus = false,
-          jump = true
-        });
-      end,
-      { desc = 'Previous Issue' })
-
-      vim.keymap.set("n", "]t", function()
-        require("trouble").next({
-          mode = 'diagnostics',
-          focus = false,
-          jump = true
-        });
-      end,
-      { desc = 'Next Issue' })
-    end
+    keys = {
+      {
+        '<leader>tt',
+        function() require('trouble').toggle('diagnostics') end,
+        desc = '[T]oggle [T]rouble Diagnostics'
+      },
+      {
+        '[t',
+        function()
+          require('trouble').prev({
+            mode = 'diagnostics',
+            focus = false,
+            jump = true
+           })
+        end,
+        desc = 'Previous Issue'
+      },
+      {
+        ']t',
+        function()
+          require('trouble').next({
+            mode = 'diagnostics',
+            focus = false,
+            jump = true
+          })
+        end,
+        desc = 'Next Issue'
+      }
+    },
+    opts = {},
   }
 }
