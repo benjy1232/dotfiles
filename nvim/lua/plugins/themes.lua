@@ -29,7 +29,9 @@ return {
     opts = {
       options = {
         icons_enabled = true,
-        theme = 'auto'
+        theme = 'auto',
+        section_separators = { left = '', right = '' },
+        component_separators = { left = '', right = '' }
       }
     }
   },
@@ -57,5 +59,13 @@ return {
     opts = {
       style = 'darker'
     }
+  },
+  {
+    'sainnhe/everforest',
+    lazy = true,
+    config = function()
+      vim.g.everforest_enable_italic = true
+      vim.g.everforest_better_performance = true
+    end
   }
 }

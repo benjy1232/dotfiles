@@ -39,7 +39,7 @@ return {
       local lspconfig = require('lspconfig')
       -- Lua LSP Setup - Primarily for Neovim
       lspconfig.lua_ls.setup {
-        cmd = {'/opt/lua-language-server/bin/lua-language-server'},
+        cmd = {'/home/bserrano/opt/lua-language-server/bin/lua-language-server'},
         on_attach = on_attach,
         on_init = function(client)
           local path = client.workspace_folders[1].name

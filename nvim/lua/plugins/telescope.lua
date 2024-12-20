@@ -14,21 +14,25 @@ return {
       },
       {
         '<C-p>',
-        require('telescope.builtin').git_files,
+        function()
+          require('telescope.builtin').git_files()
+        end,
         desc = 'Git Files'
       },
       {
         '<leader>pb',
-        require('telescope.builtin').buffers,
+        function()
+          require('telescope.builtin').buffers()
+        end,
         desc = '[P]roject [B]uffers'
       },
       {
         '<leader>pt',
-        require('telescope.builtin').help_tags,
+        function()
+          require('telescope.builtin').help_tags()
+        end,
         desc = '[P]roject Help [T]ags'
       }
     },
-    config = function()
-    end
   },
 }
