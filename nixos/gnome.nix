@@ -10,7 +10,6 @@
   environment.gnome.excludePackages = (with pkgs; [
     gedit
     gnome-photos
-  ]) ++ (with pkgs.gnome; [
     cheese
     epiphany
     geary
@@ -24,6 +23,6 @@
   ]);
 
   environment.systemPackages = with pkgs; [
-    gnome.gnome-terminal
+    gnome-console
   ];
 }
