@@ -22,6 +22,11 @@ local on_attach = function(client, bufnr)
   end
 end
 
+local homedir = os.getenv("HOME")
+if homedir == nil then
+  homedir = os.getenv("USERPROFILE")
+end
+
 return {
   {
     'neovim/nvim-lspconfig',
@@ -39,7 +44,7 @@ return {
       local lspconfig = require('lspconfig')
       -- Lua LSP Setup - Primarily for Neovim
       lspconfig.lua_ls.setup {
-        cmd = {'/home/bserrano/opt/lua-language-server/bin/lua-language-server'},
+        cmd = { homedir .. '/opt/lua-language-server/bin/lua-language-server' },
         on_attach = on_attach,
         on_init = function(client)
           local path = client.workspace_folders[1].name
