@@ -10,6 +10,7 @@ local on_attach = function(client, bufnr)
   nmap('K', vim.lsp.buf.hover, 'Hover')
   nmap('gd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
   nmap('gt', vim.lsp.buf.type_definition, '[G]oto [T]ype definition')
+  nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
   nmap('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
 
   if client.supports_method('textDocument/implementation') then
