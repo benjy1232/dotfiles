@@ -30,8 +30,8 @@ set $menu wmenu-run
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
 # Requires: desktop-backgrounds-compat, swaybg
-output * bg $HOME/Pictures/wp12853485-the-great-wave-4k-wallpapers.png fill
-output * scale 2
+output * bg $HOME/Pictures/city.png fill
+output * scale 1.5
 output eDP-1 scale 1
 exec $HOME/bin/sway_setup_displays
 #
