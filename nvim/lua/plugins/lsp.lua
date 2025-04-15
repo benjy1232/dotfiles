@@ -116,12 +116,12 @@ return {
     },
     keys = {
       {
-        '<leader>tt',
+        '<leader>xx',
         function() require('trouble').toggle('diagnostics') end,
-        desc = '[T]oggle [T]rouble Diagnostics'
+        desc = 'Toggle Trouble Diagnostics'
       },
       {
-        '[t',
+        '[x',
         function()
           require('trouble').prev({
             mode = 'diagnostics',
@@ -132,7 +132,7 @@ return {
         desc = 'Previous Issue'
       },
       {
-        ']t',
+        ']x',
         function()
           require('trouble').next({
             mode = 'diagnostics',

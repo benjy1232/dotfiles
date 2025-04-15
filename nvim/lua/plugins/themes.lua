@@ -67,5 +67,13 @@ return {
       vim.g.everforest_enable_italic = true
       vim.g.everforest_better_performance = true
     end
+  },
+  {
+    'sainnhe/gruvbox-material',
+    lazy = true,
+    config = function()
+      vim.g.gruvbox_material_enable_italic = true
+      vim.g.gruvbox_material_better_preformance = true
+    end
   }
 }
