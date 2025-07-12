@@ -6,32 +6,32 @@ return {
     opts = {},
     keys = {
       {
-        '<leader>pf',
+        '<leader>ff',
         function()
           require('telescope.builtin').find_files({hidden = true})
         end,
-        desc = '[P]roject [F]iles'
+        desc = '[F]ind [F]iles'
       },
       {
-        '<C-p>',
+        '<leader>fg',
         function()
           require('telescope.builtin').git_files()
         end,
         desc = 'Git Files'
       },
       {
-        '<leader>pb',
+        '<leader>fb',
         function()
           require('telescope.builtin').buffers()
         end,
-        desc = '[P]roject [B]uffers'
+        desc = '[F]ind [B]uffers'
       },
       {
-        '<leader>pt',
+        '<leader>ft',
         function()
           require('telescope.builtin').help_tags()
         end,
-        desc = '[P]roject Help [T]ags'
+        desc = '[F]ind Help [T]ags'
       }
     },
   },

@@ -23,11 +23,6 @@ local on_attach = function(client, bufnr)
   end
 end
 
-local homedir = os.getenv("HOME")
-if homedir == nil then
-  homedir = os.getenv("USERPROFILE")
-end
-
 return {
   {
     'neovim/nvim-lspconfig',
@@ -39,73 +34,90 @@ return {
       'hrsh7th/cmp-cmdline',
       'saadparwaiz1/cmp_luasnip'
     },
-    tag = 'v1.0.0',
+    tag = 'v2.3.0',
     config = function()
       local capabilities = require('cmp_nvim_lsp').default_capabilities()
-      local lspconfig = require('lspconfig')
+
       -- Lua LSP Setup - Primarily for Neovim
-      lspconfig.lua_ls.setup {
-        cmd = { homedir .. '/opt/lua-language-server/bin/lua-language-server' },
+      vim.lsp.enable('lua_ls')
+      vim.lsp.config('lua_ls', {
         on_attach = on_attach,
         on_init = function(client)
-          local path = client.workspace_folders[1].name
-          if vim.loop.fs_stat(path..'/.luarc.json') or vim.loop.fs_stat(path..'/.luarc.jsonc') then
-            return
+          if client.workspace_folders then
+            local path = client.workspace_folders[1].name
+            if
+              path ~= vim.fn.stdpath('config')
+              and (vim.uv.fs_stat(path .. '/.luarc.json') or vim.uv.fs_stat(path .. '/.luarc.jsonc'))
+            then
+              return
+            end
           end
 
           client.config.settings.Lua = vim.tbl_deep_extend('force', client.config.settings.Lua, {
             runtime = {
-        -- Tell the language server which version of Lua you're using
-        -- (most likely LuaJIT in the case of Neovim)
-        version = 'LuaJIT'
+              -- Tell the language server which version of Lua you're using
+              -- (most likely LuaJIT in the case of Neovim)
+              version = 'LuaJIT'
+            },
+            -- Tell the language server how to find Lua modules same way as Neovim
+            path = {
+              'lua/?.lua',
+              'lua/?/init.lua'
             },
             -- Make the server aware of Neovim runtime files
             workspace = {
-        checkThirdParty = false,
-        library = {
-          vim.env.VIMRUNTIME
-          -- Depending on the usage, you might want to add additional paths here.
-          -- "${3rd}/luv/library"
-          -- "${3rd}/busted/library",
-        }
-        -- or pull in all of 'runtimepath'. NOTE: this is a lot slower
-        -- library = vim.api.nvim_get_runtime_file("", true)
+              checkThirdParty = false,
+              library = {
+                vim.env.VIMRUNTIME
+                -- Depending on the usage, you might want to add additional paths here.
+                -- "${3rd}/luv/library"
+                -- "${3rd}/busted/library",
+              }
+              -- or pull in all of 'runtimepath'. NOTE: this is a lot slower
+              -- library = vim.api.nvim_get_runtime_file("", true)
             }
           })
         end,
         settings = {
           Lua = {}
         },
-        -- capabilities = capabilities
-      }
+        capabilities = capabilities,
+      })
 
       -- Clangd setup
-      lspconfig.clangd.setup {
+      vim.lsp.enable('clangd')
+      vim.lsp.config('clangd', {
         capabilities = capabilities,
         on_attach = on_attach
-      }
+      })
 
       -- Gopls setup
-      lspconfig.gopls.setup {
-        capabilities = capabilities
-      }
-
-      -- OCaml
-      lspconfig.ocamllsp.setup {
-        capabilities = capabilities
-      }
-
-      -- Rust
-      lspconfig.rust_analyzer.setup {
+      vim.lsp.enable('gopls')
+      vim.lsp.config('gopls', {
         capabilities = capabilities,
         on_attach = on_attach
-      }
+      })
+
+      -- OCaml
+      vim.lsp.enable('ocamllsp')
+      vim.lsp.config('ocamllsp', {
+        capabilities = capabilities,
+        on_attach = on_attach
+      })
+
+      -- Rust
+      vim.lsp.enable('rust_analyzer')
+      vim.lsp.config('rust_analyzer', {
+        capabilities = capabilities,
+        on_attach = on_attach
+      })
 
       -- Python
-      lspconfig.pylsp.setup {
-        capabilities = capabilities
-      }
-
+      vim.lsp.enable('pylsp')
+      vim.lsp.config('pylsp', {
+        capabilities = capabilities,
+        on_attach = on_attach
+      })
     end
   },
   {
